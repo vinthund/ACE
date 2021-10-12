@@ -1,9 +1,9 @@
-#author: vinthund
+2#author: vinthund
 #released: 05102021
 #version: 0.0.1
 AUTHOR="vinthund"
 RELEASED="05102021"
-VERSION="0.0.1"
+VERSION="0.0.2"
 #display help message
 
 USAGE(){
