@@ -4,6 +4,7 @@
 AUTHOR="vinthund"
 RELEASED="05102021"
 VERSION="0.0.2"
+FILE = ~/ACE/systemstats.log
 #display help message
 
 USAGE(){
@@ -37,9 +38,12 @@ t) TEMP=$(cat /sys/class/thermal/thermal_zone0/temp)
    echo ${TEMP} "need to divide by thousand";;
 c) USAGE=$(grep -w 'cpu' /proc/stat | awk '{usage=($2+$3+$4+$6+$7+$8)*100/($2+$3+$4+$5+$6+$7+$8)}
 					   {free=($5)*100/($2+$3+$4+$5+$6+$7+$8)}
-					   END  {printf "used CPU: %.2f%%\n",usage}
-					        {printf "Free CPU: %.2f%%\n",free}')
+					   END  {printf "used CPU: %.2f%%",usage}
+					        {printf " Free CPU: %.2f%%",free}')
    echo ${USAGE};;
 esac
 done
+
+NOW=$(date +%FT%TZ)
+echo -e " ${NOW}\t{IP: ${IP} Temperature: ${TEMP} CPU:${USAGE}" >> ${FILE}
 #end of script
